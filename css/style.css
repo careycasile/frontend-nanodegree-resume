@@ -1,3 +1,5 @@
+@import 'https://fonts.googleapis.com/css?family=Lato:100,400,700';
+
 body,
 div,
 ul,
@@ -11,7 +13,12 @@ h5,
 h6 {
   padding:0;
   margin:0;
-  font-family: "Roboto", sans-serif;
+  font-family: "Lato", "Roboto", sans-serif;
+  list-style: none;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 .clear-fix {
