@@ -14,13 +14,14 @@ var schoolLoop = function (schoolInfo) {
     var formattedSchoolLocation = [];
     var formattedSchoolMajor = [];
     for (var x = 0; x < schoolInfo.length; x++) {
+    	$('#education').append(HTMLschoolStart);
         formattedSchoolName[x] = HTMLschoolName.replace('%data%', schoolInfo[x].name);
         formattedSchoolDegree[x] = HTMLschoolDegree.replace('%data%', schoolInfo[x].degree);
         formattedSchoolDates[x] = HTMLschoolDates.replace('%data%', schoolInfo[x].dates);
         formattedSchoolLocation[x] = HTMLschoolLocation.replace('%data%', schoolInfo[x].location);
         formattedSchoolMajor[x] = HTMLschoolMajor.replace('%data%', schoolInfo[x].majors);
-        $('.education-entry').append(formattedSchoolName[x] + formattedSchoolDegree[x], formattedSchoolLocation[x], formattedSchoolDates[x],
-            formattedSchoolMajor[x]);
+        $('.education-entry:first').append(formattedSchoolName[x] + formattedSchoolDegree[x], formattedSchoolLocation[x], formattedSchoolDates[x],
+            formattedSchoolMajor[x], '<hr>');
     }
 };
 
@@ -34,7 +35,7 @@ var onlineLoop = function (onlineInfo) {
         formattedOnlineSchool[x] = HTMLonlineSchool.replace('%data%', onlineInfo[x].school);
         formattedOnlineDates[x] = HTMLonlineDates.replace('%data%', onlineInfo[x].dates);
         formattedOnlineUrl[x] = HTMLonlineURL.replace('%data%', onlineInfo[x].url);
-        $('.education-entry').append(formattedOnlineTitle[x] + formattedOnlineSchool[x], formattedOnlineDates[x], formattedOnlineUrl[x]);
+        $('.education-entry:last').append(formattedOnlineTitle[x] + formattedOnlineSchool[x], formattedOnlineDates[x], formattedOnlineUrl[x], '<hr>');
     }
 };
 
@@ -45,12 +46,13 @@ var workLoop = function (workInfo) {
     var formattedWorkLocation = [];
     var formattedWorkDescription = [];
     for (var x = 0; x < workInfo.length; x++) {
+    	$('#workExperience').append(HTMLworkStart);
         formattedEmployer[x] = HTMLworkEmployer.replace('%data%', workInfo[x].employer);
         formattedWorkTitle[x] = HTMLworkTitle.replace('%data%', workInfo[x].title);
         formattedWorkDates[x] = HTMLworkDates.replace('%data%', workInfo[x].dates);
         formattedWorkLocation[x] = HTMLworkLocation.replace('%data%', workInfo[x].location);
         formattedWorkDescription[x] = HTMLworkDescription.replace('%data%', workInfo[x].description);
-        $('.work-entry').append(formattedEmployer[x] + formattedWorkTitle[x], formattedWorkDates[x], formattedWorkLocation[x], formattedWorkDescription[x]);
+        $('.work-entry:last').append(formattedEmployer[x] + formattedWorkTitle[x], formattedWorkDates[x], formattedWorkLocation[x], formattedWorkDescription[x], '<hr>');
     }
 };
 
@@ -60,11 +62,12 @@ var projectLoop = function (projectInfo) {
     var formattedProjectDescription = [];
     var formattedProjectImage = [];
     for (var x = 0; x < projectInfo.length; x++) {
+    	$('#projects').append(HTMLprojectStart);
         formattedProjectTitle[x] = HTMLprojectTitle.replace("%data%", projectInfo[x].title);
         formattedProjectDates[x] = HTMLprojectDates.replace("%data%", projectInfo[x].dates);
         formattedProjectDescription[x] = HTMLprojectDescription.replace("%data%", projectInfo[x].description);
         formattedProjectImage[x] = HTMLprojectImage.replace("%data%", projectInfo[x].images);
-        $('.project-entry').append(formattedProjectTitle[x], formattedProjectDates[x], formattedProjectDescription[x], formattedProjectImage[x]);
+        $('.project-entry:last').append(formattedProjectTitle[x], formattedProjectDates[x], formattedProjectDescription[x], formattedProjectImage[x], '<hr>');
     }
 };
 
@@ -122,15 +125,14 @@ var education = {
         'url': 'https://www.udacity.com/course/front-end-web-developer-nanodegree--nd001'
     }],
     'display': function () {
-        $('#education').append(HTMLschoolStart);
         schoolLoop(education.schools);
-        $('.education-entry').append(HTMLonlineClasses);
+        $('.education-entry:last').append(HTMLonlineClasses);
         onlineLoop(education.onlineCourses);
     }
 };
 
 var work = {
-    jobs: [{
+    'jobs': [{
         'employer': 'PNC Bank',
         'title': 'Account Executive',
         'location': 'Pittsburgh, PA',
@@ -144,7 +146,6 @@ var work = {
         'description': 'Managed two full time equity actors.'
     }],
     'display': function () {
-        $('#workExperience').append(HTMLworkStart);
         workLoop(work.jobs);
     }
 };
@@ -162,7 +163,6 @@ var projects = {
         'images': 'images/project2.gif'
     }],
     'display': function () {
-        $('#projects').append(HTMLprojectStart);
         projectLoop(projects.projects);
     }
 };
