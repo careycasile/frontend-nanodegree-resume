@@ -14,7 +14,7 @@ var schoolLoop = function (schoolInfo) {
     var formattedSchoolLocation = [];
     var formattedSchoolMajor = [];
     for (var x = 0; x < schoolInfo.length; x++) {
-    	$('#education').append(HTMLschoolStart);
+        $('#education').append(HTMLschoolStart);
         formattedSchoolName[x] = HTMLschoolName.replace('%data%', schoolInfo[x].name);
         formattedSchoolDegree[x] = HTMLschoolDegree.replace('%data%', schoolInfo[x].degree);
         formattedSchoolDates[x] = HTMLschoolDates.replace('%data%', schoolInfo[x].dates);
@@ -46,13 +46,14 @@ var workLoop = function (workInfo) {
     var formattedWorkLocation = [];
     var formattedWorkDescription = [];
     for (var x = 0; x < workInfo.length; x++) {
-    	$('#workExperience').append(HTMLworkStart);
+        $('#workExperience').append(HTMLworkStart);
         formattedEmployer[x] = HTMLworkEmployer.replace('%data%', workInfo[x].employer);
         formattedWorkTitle[x] = HTMLworkTitle.replace('%data%', workInfo[x].title);
         formattedWorkDates[x] = HTMLworkDates.replace('%data%', workInfo[x].dates);
         formattedWorkLocation[x] = HTMLworkLocation.replace('%data%', workInfo[x].location);
         formattedWorkDescription[x] = HTMLworkDescription.replace('%data%', workInfo[x].description);
-        $('.work-entry:last').append(formattedEmployer[x] + formattedWorkTitle[x], formattedWorkDates[x], formattedWorkLocation[x], formattedWorkDescription[x], '<hr>');
+        $('.work-entry:last').append(formattedEmployer[x] + formattedWorkTitle[x], formattedWorkDates[x], formattedWorkLocation[x],
+            formattedWorkDescription[x], '<hr>');
     }
 };
 
@@ -62,12 +63,13 @@ var projectLoop = function (projectInfo) {
     var formattedProjectDescription = [];
     var formattedProjectImage = [];
     for (var x = 0; x < projectInfo.length; x++) {
-    	$('#projects').append(HTMLprojectStart);
+        $('#projects').append(HTMLprojectStart);
         formattedProjectTitle[x] = HTMLprojectTitle.replace("%data%", projectInfo[x].title);
         formattedProjectDates[x] = HTMLprojectDates.replace("%data%", projectInfo[x].dates);
         formattedProjectDescription[x] = HTMLprojectDescription.replace("%data%", projectInfo[x].description);
         formattedProjectImage[x] = HTMLprojectImage.replace("%data%", projectInfo[x].images);
-        $('.project-entry:last').append(formattedProjectTitle[x], formattedProjectDates[x], formattedProjectDescription[x], formattedProjectImage[x], '<hr>');
+        $('.project-entry:last').append(formattedProjectTitle[x], formattedProjectDates[x], formattedProjectDescription[x], formattedProjectImage[x],
+            '<hr>');
     }
 };
 
