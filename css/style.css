@@ -17,6 +17,11 @@ h6 {
     list-style: none;
 }
 
+#main {
+    max-width: 1000px;
+    margin: auto;
+}
+
 * {
     box-sizing: border-box;
 }
@@ -181,8 +186,13 @@ span {
     padding: 5px;
 }
 
-#lets-connect>h2 {
+#lets-connect {
     text-align: center;
+    color: #EFECCA;
+    background-color: #002F2F;
+}
+
+#lets-connect>h2 {
     color: #EFECCA;
 }
 

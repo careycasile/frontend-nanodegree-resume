@@ -1,8 +1,10 @@
+var data = '%data%';
+
 //"For loop" functions for each display method appending information to the DOM.
 var bioLoop = function (bioInfo) {
     var formattedSkills = [];
     for (var x = 0; x < bioInfo.length; x++) {
-        formattedSkills[x] = HTMLskills.replace("%data%", bio.skills[x]);
+        formattedSkills[x] = HTMLskills.replace(data, bio.skills[x]);
         $('#skills').append(formattedSkills[x]);
     }
 };
@@ -15,11 +17,11 @@ var schoolLoop = function (schoolInfo) {
     var formattedSchoolMajor = [];
     for (var x = 0; x < schoolInfo.length; x++) {
         $('#education').append(HTMLschoolStart);
-        formattedSchoolName[x] = HTMLschoolName.replace('%data%', schoolInfo[x].name);
-        formattedSchoolDegree[x] = HTMLschoolDegree.replace('%data%', schoolInfo[x].degree);
-        formattedSchoolDates[x] = HTMLschoolDates.replace('%data%', schoolInfo[x].dates);
-        formattedSchoolLocation[x] = HTMLschoolLocation.replace('%data%', schoolInfo[x].location);
-        formattedSchoolMajor[x] = HTMLschoolMajor.replace('%data%', schoolInfo[x].majors);
+        formattedSchoolName[x] = HTMLschoolName.replace(data, schoolInfo[x].name);
+        formattedSchoolDegree[x] = HTMLschoolDegree.replace(data, schoolInfo[x].degree);
+        formattedSchoolDates[x] = HTMLschoolDates.replace(data, schoolInfo[x].dates);
+        formattedSchoolLocation[x] = HTMLschoolLocation.replace(data, schoolInfo[x].location);
+        formattedSchoolMajor[x] = HTMLschoolMajor.replace(data, schoolInfo[x].majors);
         $('.education-entry:first').append(formattedSchoolName[x] + formattedSchoolDegree[x], formattedSchoolLocation[x], formattedSchoolDates[x],
             formattedSchoolMajor[x], '<hr>');
     }
@@ -31,10 +33,10 @@ var onlineLoop = function (onlineInfo) {
     var formattedOnlineDates = [];
     var formattedOnlineUrl = [];
     for (var x = 0; x < onlineInfo.length; x++) {
-        formattedOnlineTitle[x] = HTMLonlineTitle.replace('%data%', onlineInfo[x].title);
-        formattedOnlineSchool[x] = HTMLonlineSchool.replace('%data%', onlineInfo[x].school);
-        formattedOnlineDates[x] = HTMLonlineDates.replace('%data%', onlineInfo[x].dates);
-        formattedOnlineUrl[x] = HTMLonlineURL.replace('%data%', onlineInfo[x].url);
+        formattedOnlineTitle[x] = HTMLonlineTitle.replace(data, onlineInfo[x].title);
+        formattedOnlineSchool[x] = HTMLonlineSchool.replace(data, onlineInfo[x].school);
+        formattedOnlineDates[x] = HTMLonlineDates.replace(data, onlineInfo[x].dates);
+        formattedOnlineUrl[x] = HTMLonlineURL.replace(data, onlineInfo[x].url);
         $('.education-entry:last').append(formattedOnlineTitle[x] + formattedOnlineSchool[x], formattedOnlineDates[x], formattedOnlineUrl[x], '<hr>');
     }
 };
@@ -47,11 +49,11 @@ var workLoop = function (workInfo) {
     var formattedWorkDescription = [];
     for (var x = 0; x < workInfo.length; x++) {
         $('#workExperience').append(HTMLworkStart);
-        formattedEmployer[x] = HTMLworkEmployer.replace('%data%', workInfo[x].employer);
-        formattedWorkTitle[x] = HTMLworkTitle.replace('%data%', workInfo[x].title);
-        formattedWorkDates[x] = HTMLworkDates.replace('%data%', workInfo[x].dates);
-        formattedWorkLocation[x] = HTMLworkLocation.replace('%data%', workInfo[x].location);
-        formattedWorkDescription[x] = HTMLworkDescription.replace('%data%', workInfo[x].description);
+        formattedEmployer[x] = HTMLworkEmployer.replace(data, workInfo[x].employer);
+        formattedWorkTitle[x] = HTMLworkTitle.replace(data, workInfo[x].title);
+        formattedWorkDates[x] = HTMLworkDates.replace(data, workInfo[x].dates);
+        formattedWorkLocation[x] = HTMLworkLocation.replace(data, workInfo[x].location);
+        formattedWorkDescription[x] = HTMLworkDescription.replace(data, workInfo[x].description);
         $('.work-entry:last').append(formattedEmployer[x] + formattedWorkTitle[x], formattedWorkDates[x], formattedWorkLocation[x],
             formattedWorkDescription[x], '<hr>');
     }
@@ -61,15 +63,19 @@ var projectLoop = function (projectInfo) {
     var formattedProjectTitle = [];
     var formattedProjectDates = [];
     var formattedProjectDescription = [];
-    var formattedProjectImage = [];
     for (var x = 0; x < projectInfo.length; x++) {
         $('#projects').append(HTMLprojectStart);
-        formattedProjectTitle[x] = HTMLprojectTitle.replace("%data%", projectInfo[x].title);
-        formattedProjectDates[x] = HTMLprojectDates.replace("%data%", projectInfo[x].dates);
-        formattedProjectDescription[x] = HTMLprojectDescription.replace("%data%", projectInfo[x].description);
-        formattedProjectImage[x] = HTMLprojectImage.replace("%data%", projectInfo[x].images);
-        $('.project-entry:last').append(formattedProjectTitle[x], formattedProjectDates[x], formattedProjectDescription[x], formattedProjectImage[x],
-            '<hr>');
+        formattedProjectTitle[x] = HTMLprojectTitle.replace(data, projectInfo[x].title);
+        formattedProjectDates[x] = HTMLprojectDates.replace(data, projectInfo[x].dates);
+        formattedProjectDescription[x] = HTMLprojectDescription.replace(data, projectInfo[x].description);
+        $('.project-entry:last').append(formattedProjectTitle[x], formattedProjectDates[x], formattedProjectDescription[x]);
+        var formattedProjectImage = [];
+        for (var y = 0; y < projectInfo[x].images.length; y++) {
+            formattedProjectImage[y] = HTMLprojectImage.replace(data, projectInfo[x].images[y]);
+            $('.project-entry:last').append(formattedProjectImage[y]);
+        };
+        $('.project-entry:last').append('<hr>');
+
     }
 };
 
@@ -88,19 +94,19 @@ var bio = {
     'skills': ['HTML', 'CSS', 'JavaScript', 'jQuery'],
     'biopic': 'images/headshot.jpg',
     'display': function () {
-        var formattedName = HTMLheaderName.replace("%data%", bio.name);
-        var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
-        var formattedMobile = HTMLmobile.replace("%data%", bio.contacts.mobile);
-        var formattedEmail = HTMLemail.replace("%data%", bio.contacts.email);
-        var formattedGithub = HTMLgithub.replace("%data%", bio.contacts.github);
-        var formattedTwitter = HTMLtwitter.replace("%data%", bio.contacts.twitter);
-        var formattedLocation = HTMLlocation.replace("%data%", bio.location);
-        var formattedBiopic = HTMLbioPic.replace("%data%", bio.biopic);
-        var formattedWelcome = HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage);
+        var formattedName = HTMLheaderName.replace(data, bio.name);
+        var formattedRole = HTMLheaderRole.replace(data, bio.role);
+        var formattedMobile = HTMLmobile.replace(data, bio.contacts.mobile);
+        var formattedEmail = HTMLemail.replace(data, bio.contacts.email);
+        var formattedGithub = HTMLgithub.replace(data, bio.contacts.github);
+        var formattedTwitter = HTMLtwitter.replace(data, bio.contacts.twitter);
+        var formattedLocation = HTMLlocation.replace(data, bio.location);
+        var formattedBiopic = HTMLbioPic.replace(data, bio.biopic);
+        var formattedWelcome = HTMLwelcomeMsg.replace(data, bio.welcomeMessage);
         $(HTMLskillsStart).insertAfter('#topContacts');
         bioLoop(bio.skills);
         $('#header').prepend(formattedName, formattedRole, formattedBiopic, formattedWelcome, formattedLocation);
-        $('#topContacts').append(formattedMobile, formattedEmail, formattedGithub, formattedTwitter);
+        $('#topContacts, #footerContacts').append(formattedMobile, formattedEmail, formattedGithub, formattedTwitter);
     }
 };
 
@@ -157,12 +163,12 @@ var projects = {
         'title': 'Portfolio Project',
         'dates': '07-01-2016 to 09-01-2016',
         'description': 'A responsive portfolio using HTML and CSS',
-        'images': 'images/project1.gif'
+        'images': ['images/project1.gif', 'images/project1.gif', 'images/project1.gif']
     }, {
         'title': 'Resume Project',
         'dates': '09-01-2016 to in progress',
         'description': 'A resume powered with JavaScript and jQuery',
-        'images': 'images/project2.gif'
+        'images': ['images/project2.gif', 'images/project2.gif']
     }],
     'display': function () {
         projectLoop(projects.projects);
